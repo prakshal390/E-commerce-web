@@ -25,6 +25,7 @@ import Footer from "../Components/Footer";
 import { CartContext } from "../Context/CartContext";
 import { products } from "../assets/asset/assets";
 import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cartItems, updateQty, removeItem } = useContext(CartContext);
@@ -228,9 +229,16 @@ const CartPage = () => {
           </p>
         </div>
 
-        <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 font-semibold transition">
+        {/* <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 font-semibold transition">
           Checkout
-        </button>
+        </button> */}
+        <Link
+        to="/checkout"
+        className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 font-semibold transition text-center"
+        >
+        Checkout
+        </Link>
+
       </div>
     );
   }
