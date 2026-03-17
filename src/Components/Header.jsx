@@ -51,9 +51,9 @@ function Header() {
           <Link className="cursor-pointer hover:text-yellow-400" to="/about">
             About
           </Link>
-          <Link className="cursor-pointer hover:text-yellow-400" to="/products">
+          {/* <Link className="cursor-pointer hover:text-yellow-400" to="/products">
             Products
-          </Link>
+          </Link> */}
           <Link className="cursor-pointer hover:text-yellow-400" to="/contact">
             Contact
           </Link>
@@ -98,9 +98,9 @@ function Header() {
           <Link className="cursor-pointer hover:text-yellow-400" to="/about">
             About
           </Link>
-          <Link className="cursor-pointer hover:text-yellow-400" to="/products">
+          {/* <Link className="cursor-pointer hover:text-yellow-400" to="/products">
             Products
-          </Link>
+          </Link> */}
           <Link className="cursor-pointer hover:text-yellow-400" to="/contact">
             Contact
           </Link>
