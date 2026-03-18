@@ -1,24 +1,4 @@
-// function Footer(){
-//     return(
-//         <footer className="text-center my-8 text-red-200 p-4 bg-lime-500">
-//                 {/* mt-top; mb-bottom; ml-left; mr-right; my-top And bottom;  mx-left And right */}
-//                 {/* my-4 => 16px */}
-//                 jainprakshal@gmail.com
-//         </footer>
-//     )
-// }
-
-
-// export default Footer
-
-
-
-
-
-
-
-
-import { FaInstagram, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 
 function Footer(){
   return(
@@ -27,15 +7,12 @@ function Footer(){
 
 <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
 
-
-
 <h2 className="text-xl font-semibold">
 Prakshal Jain
 </h2>
 
-
-
 <div className="flex gap-6 text-xl">
+
 <a href="https://www.instagram.com/Cyberking_840" className="hover:text-pink-500">
 <FaInstagram/>
 </a>
@@ -47,24 +24,25 @@ Prakshal Jain
 <a href="mailto:jainprakshal@gmail.com" className="hover:text-yellow-400">
 <FaEnvelope/>
 </a>
+
+{/* ✅ GitHub Added */}
+<a href="https://github.com/prakshal390" className="hover:text-gray-400">
+<FaGithub/>
+</a>
+
 </div>
 
-
-
 </div>
-
-
 
 <p className="text-center text-gray-400 mt-6 text-sm">
 © 2026 Prakshal Jain | All Rights Reserved
 </p>
-
-
-
 
 </footer>
 
   )
 }
 
-export default Footer
+export default Footer;
+
+
