@@ -85,21 +85,22 @@ const CartContextProvider = ({ children }) => {
 
   const manageCartItem = (productId, selectedSize, action) => {
   setCartItems((prevItems) => {
-    let updatedCart = structuredClone(prevItems);
-    let product = updatedCart.find((item) => item.productId === productId);
-    if (!product) return prevItems;
+    let updatedCart = structuredClone(prevItems);                           //🔁 Deep copy bana rahe hain taaki original state mutate na ho
+    let product = updatedCart.find((item) => item.productId === productId); // 🔍 Step 1: product dhundo cart me
+    if (!product) return prevItems;                                         // ❌ agar product nahi mila to state change mat karo
 
-    let size = product.sizes.find((item) => item.size === selectedSize);
-    if (!size) return prevItems;
+    let size = product.sizes.find((item) => item.size === selectedSize);    // 🔍 Step 2: selected size dhundo us product ke andar
+    if (!size) return prevItems;                                            // ❌ agar size nahi mili to state change mat karo
 
-    if (action === "inc") size.qty += 1;
-    if (action === "dec") size.qty -= 1;
-    if (action === "remove" || size.qty <= 0) {
-      product.sizes = product.sizes.filter((item) => item.size !== selectedSize);
+    if (action === "inc") size.qty += 1;                                    // ➕ Step 3: quantity increase
+    if (action === "dec") size.qty -= 1;                                    // ➖ Step 4: quantity decrease
+    if (action === "remove" || size.qty <= 0)                               // 🗑️ Step 5: remove condition    // ya to action "remove" ho ya qty 0 ho gayi ho
+    {                 
+      product.sizes = product.sizes.filter((item) => item.size !== selectedSize);   
     }
 
-    updatedCart = updatedCart.filter((item) => item.sizes.length > 0);
-    return updatedCart;
+    updatedCart = updatedCart.filter((item) => item.sizes.length > 0);      // 🧹 Step 6: agar kisi product me koi size nahi bacha to pura product cart se hata do
+    return updatedCart;                                                     // ✅ final updated cart return karo
   });
 };
 

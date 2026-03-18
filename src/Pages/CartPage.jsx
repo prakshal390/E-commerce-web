@@ -170,7 +170,7 @@ const CartPage = () => {
                     <button
                       className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg font-semibold"
                       onClick={() =>
-                        manageCartItem(cartProduct.productId, sizeItem.size, "dec")
+                        manageCartItem(cartProduct.productId, sizeItem.size, "dec") //productId, selectedSize, action tum khud pass kar rahe ho button click se
                         
                       }
                     >
@@ -184,7 +184,7 @@ const CartPage = () => {
                     <button
                       className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg font-semibold"
                       onClick={() =>
-                        manageCartItem(cartProduct.productId, sizeItem.size, "inc")
+                        manageCartItem(cartProduct.productId, sizeItem.size, "inc") //productId, selectedSize, action tum khud pass kar rahe ho button click se
                   
                       }
                     >
@@ -202,7 +202,7 @@ const CartPage = () => {
                   <button
                     className="w-11 h-11 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center transition"
                     onClick={() =>
-                      manageCartItem(cartProduct.productId, sizeItem.size, "remove")
+                      manageCartItem(cartProduct.productId, sizeItem.size, "remove") //productId, selectedSize, action tum khud pass kar rahe ho button click se
                       
                     }
                   >
@@ -227,9 +227,7 @@ const CartPage = () => {
           <h2 className="text-xl md:text-2xl font-bold text-gray-800">
             Total: ₹ {totalPrice}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
-            Checkout par click karke payment page bana sakte ho.
-          </p>
+          
         </div>
 
         
