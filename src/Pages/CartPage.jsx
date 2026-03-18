@@ -28,7 +28,7 @@ import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartItems, updateQty, removeItem } = useContext(CartContext);
+  const { cartItems, manageCartItem  } = useContext(CartContext);
 
   // total price store karne ke liye
   let totalPrice = 0;
@@ -170,7 +170,8 @@ const CartPage = () => {
                     <button
                       className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg font-semibold"
                       onClick={() =>
-                        updateQty(cartProduct.productId, sizeItem.size, "dec")
+                        manageCartItem(cartProduct.productId, sizeItem.size, "dec")
+                        
                       }
                     >
                       -
@@ -183,7 +184,8 @@ const CartPage = () => {
                     <button
                       className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-lg font-semibold"
                       onClick={() =>
-                        updateQty(cartProduct.productId, sizeItem.size, "inc")
+                        manageCartItem(cartProduct.productId, sizeItem.size, "inc")
+                  
                       }
                     >
                       +
@@ -200,7 +202,8 @@ const CartPage = () => {
                   <button
                     className="w-11 h-11 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center transition"
                     onClick={() =>
-                      removeItem(cartProduct.productId, sizeItem.size)
+                      manageCartItem(cartProduct.productId, sizeItem.size, "remove")
+                      
                     }
                   >
                     <FaTrash />
@@ -229,9 +232,7 @@ const CartPage = () => {
           </p>
         </div>
 
-        {/* <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 font-semibold transition">
-          Checkout
-        </button> */}
+        
         <Link
         to="/checkout"
         className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 font-semibold transition text-center"

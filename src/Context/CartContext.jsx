@@ -83,95 +83,31 @@ const CartContextProvider = ({ children }) => {
 
 
 
-  // qty update karne ke liye function
-  const updateQty = (productId, selectedSize, action) => {
-    setCartItems((prevItems) => {
-      let updatedCart = [...prevItems];
+  const manageCartItem = (productId, selectedSize, action) => {
+  setCartItems((prevItems) => {
+    let updatedCart = structuredClone(prevItems);
+    let product = updatedCart.find((item) => item.productId === productId);
+    if (!product) return prevItems;
 
-      // product dhundo
-      let productObj = updatedCart.find((item) => item.productId === productId);
+    let size = product.sizes.find((item) => item.size === selectedSize);
+    if (!size) return prevItems;
 
-      // agar product nahi mila
-      if (!productObj) {
-        return prevItems;
-      }
+    if (action === "inc") size.qty += 1;
+    if (action === "dec") size.qty -= 1;
+    if (action === "remove" || size.qty <= 0) {
+      product.sizes = product.sizes.filter((item) => item.size !== selectedSize);
+    }
 
-      // size dhundo
-      let sizeObj = productObj.sizes.find(
-        (item) => item.size === selectedSize
-      );
-
-      // agar size nahi mili
-      if (!sizeObj) {
-        return prevItems;
-      }
-
-      // increase qty
-      if (action === "inc") {
-        sizeObj.qty = sizeObj.qty + 1;
-      }
-
-      // decrease qty
-      if (action === "dec") {
-        sizeObj.qty = sizeObj.qty - 1;
-
-        // agar qty 0 ya usse kam ho gayi to woh size remove kar do
-        if (sizeObj.qty <= 0) {
-          productObj.sizes = productObj.sizes.filter(
-            (item) => item.size !== selectedSize
-          );
-        }
-      }
-
-      // agar sizes array empty ho gayi to pura product remove kar do
-      if (productObj.sizes.length === 0) {
-        updatedCart = updatedCart.filter(
-          (item) => item.productId !== productId
-        );
-      }
-
-      console.log("Qty Updated Cart:", updatedCart);
-
-      return [...updatedCart];
-    });
-  };
+    updatedCart = updatedCart.filter((item) => item.sizes.length > 0);
+    return updatedCart;
+  });
+};
 
 
 
 
 
 
-
-  // sirf particular size item remove karne ke liye
-  const removeItem = (productId, selectedSize) => {
-    setCartItems((prevItems) => {
-      let updatedCart = [...prevItems];
-
-      // product dhundo
-      let productObj = updatedCart.find((item) => item.productId === productId);
-
-      // agar product nahi mila
-      if (!productObj) {
-        return prevItems;
-      }
-
-      // sirf selected size remove karo
-      productObj.sizes = productObj.sizes.filter(
-        (item) => item.size !== selectedSize
-      );
-
-      // agar koi size nahi bachi to pura product hata do
-      if (productObj.sizes.length === 0) {
-        updatedCart = updatedCart.filter(
-          (item) => item.productId !== productId
-        );
-      }
-
-      console.log("Item Removed Cart:", updatedCart);
-
-      return [...updatedCart];
-    });
-  };
 
 
 
@@ -182,7 +118,7 @@ const CartContextProvider = ({ children }) => {
   // provider ke through cartItems aur functions sab components ko dena
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, updateQty, removeItem }}
+      value={{ cartItems, addToCart, manageCartItem, }}
     >
       {children}
     </CartContext.Provider>
