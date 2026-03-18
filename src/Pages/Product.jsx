@@ -16,18 +16,21 @@ const Product = () => {
   const [likes, setLikes] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
 
+  // success message ke liye
+  const [cartMessage, setCartMessage] = useState("");
+
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    console.log("PID:", pid);                                    // show product id
-    console.log("Products:", products);                          // show all available product
+    console.log("PID:", pid);                                // show product id
+    console.log("Products:", products);                      // show all available product
 
-    const foundProduct = products.find((p) => p.id === pid);     // check and compare click vali pid with actual object json vali id k sath OR Finding the Clicked Product
-    console.log("Single Product:", foundProduct);                // show that particular singleProduct OR Show Found Product
+    const foundProduct = products.find((p) => p.id === pid); // check and compare click vali pid with actual object json vali id k sath OR Finding the Clicked Product
+    console.log("Single Product:", foundProduct);            // show that particular singleProduct OR Show Found Product
 
     if (foundProduct) {
       setSingleProduct(foundProduct);
-      setImage(foundProduct.image[0]);                           //Sets first image as default image which shows on Main Image
+      setImage(foundProduct.image[0]);                       //Sets first image as default image which shows on Main Image
     }
 
     const reviewData = productReviews[pid];
@@ -38,11 +41,31 @@ const Product = () => {
     }
   }, [pid]);
 
+  // add to cart handle function
+  const handleAddToCart = () => {
+    // agar size select nahi hui
+    if (!selectedSize) {
+      setCartMessage("Please select a size first");
+      return;
+    }
+
+    // cart me add kar do
+    addToCart(singleProduct.id, selectedSize);
+
+    // success message show karo
+    setCartMessage("✅ Product added to cart");
+
+    // 2 second baad message hata do
+    setTimeout(() => {
+      setCartMessage("");
+    }, 2000);
+  };
+
   return (
     <div>
       <Header />
 
-      {singleProduct && (                                       // If product exists → show UI   If not → show nothing
+      {singleProduct && (
         <div className="max-w-7xl mx-auto px-6 py-12">
 
           {/* Product Section */}
@@ -55,19 +78,17 @@ const Product = () => {
                   <img
                     key={ind}
                     src={i}
-                    // Image Click Logic   
-                    // User clicks image 3  
-                    // image = img3
+                    alt="product"
                     onClick={() => setImage(i)}
                     className="w-20 border cursor-pointer hover:scale-105 transition"
                   />
                 ))}
               </div>
 
-
               {/* Main Image */}
               <img
                 src={image}
+                alt="main product"
                 className="w-[400px] rounded-lg shadow-lg"
               />
             </div>
@@ -108,7 +129,6 @@ const Product = () => {
                   ))}
                 </div>
 
-                {/* selected size show karne ke liye */}
                 <p className="mt-3 text-sm text-gray-500">
                   Selected Size: {selectedSize ? selectedSize : "None"}
                 </p>
@@ -116,25 +136,31 @@ const Product = () => {
 
               {/* Add to Cart */}
               <button
-                onClick={() => addToCart(singleProduct.id, selectedSize)}   // ye dono cartContext.jsx ma ja rahi hai
+                onClick={handleAddToCart}
                 className="bg-black text-white py-3 rounded-lg hover:bg-gray-500 transition"
               >
                 Add to Cart
               </button>
+
+              {/* Message */}
+              {cartMessage && (
+                <p className="text-sm font-medium text-green-600 mt-2">
+                  {cartMessage}
+                </p>
+              )}
             </div>
           </div>
 
           {/* Reviews Section */}
           <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6 text-center">Customer Reviews</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Customer Reviews
+            </h2>
 
             <div className="space-y-5">
               {reviews.length > 0 ? (
                 reviews.map((rev, i) => (
-                  <div
-                    key={i}
-                    className="border p-4 rounded-lg shadow-sm"
-                  >
+                  <div key={i} className="border p-4 rounded-lg shadow-sm">
                     <p className="font-semibold">{rev.user}</p>
 
                     <p className="text-yellow-500">
@@ -150,25 +176,19 @@ const Product = () => {
             </div>
           </div>
 
+          {/* Related Product */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Related Product
+            </h2>
 
-
-            {/* Related Product */}
-              <div className="mt-16">
-              <h2 className="text-2xl font-bold mb-6 text-center">Related Product</h2>
-              {/* Related Product  */}
-              <RelatedProduct category={singleProduct.category} subcategory={singleProduct.subCategory} /> 
-              
-             </div>
-
-
+            <RelatedProduct
+              category={singleProduct.category}
+              subcategory={singleProduct.subCategory}
+            />
+          </div>
         </div>
-
-        
       )}
-
-            
-
-             
 
       <Footer />
     </div>
