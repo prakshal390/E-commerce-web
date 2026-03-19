@@ -8,7 +8,7 @@ const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
 
-
+  
 
   // productId and selectedSize Product.jsx se aa rahe hain
   const addToCart = (productId, selectedSize) => {

@@ -10,6 +10,8 @@ import Collection from './Components/Collection'
 import Product from './Pages/Product'
 import CartPage from './Pages/CartPage'
 import CheckoutPage from './Pages/CheckoutPage'
+import AdminLogin from './Pages/AdminLogin'
+import ProductAdded from './Pages/ProductAdded'
 
 
 function App() {
@@ -26,6 +28,10 @@ function App() {
         <Route path='/products/:pid' element={<Product/>} />
         <Route path='/cart' element={<CartPage/>} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        {/* ADMIN PANEL ROUTE */}
+        <Route path="/admin" element={<AdminLogin />} />
+
+        
 
       </Routes>
     </>

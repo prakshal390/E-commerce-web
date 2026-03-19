@@ -77,6 +77,9 @@ function Header() {
           <Link to="/login">
             <FaUser className="cursor-pointer text-2xl" />
           </Link>
+          <Link className="cursor-pointer hover:text-yellow-400" to="/admin">
+          Admin
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -122,6 +125,10 @@ function Header() {
           <Link to="/login" className="flex gap-2 items-center">
             <FaUser />
             Login
+          </Link>
+
+          <Link className="cursor-pointer hover:text-yellow-400" to="/admin">
+          Admin
           </Link>
         </div>
       )}
