@@ -57,7 +57,7 @@ function Hero() {
           {productData.slice(0,10).map((obj,key) => (
             <Card
               id={obj.id}
-              title={obj.title}
+              name={obj.name}
               image={obj.image[0]}
               description={obj.description}
               category={obj.category}
@@ -85,7 +85,7 @@ function Hero() {
           {productData.slice(20,25).map((obj) => (
             <Card
               id={obj.id}
-              title={obj.title}
+              name={obj.name}
               image={obj.image[0]}
               description={obj.description}
               category={obj.category}
