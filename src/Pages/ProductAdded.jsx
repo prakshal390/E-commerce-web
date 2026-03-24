@@ -416,11 +416,11 @@ const ProductAdded = () => {
                 </p>
 
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                  {addedProduct.title}
+                  title : {addedProduct.title}
                 </h3>
 
                 <p className="text-green-600 font-semibold text-lg mb-2">
-                  ₹ {addedProduct.price}
+                  price : ₹ {addedProduct.price}
                 </p>
 
                 <p className="text-sm text-blue-600 mb-2">
@@ -428,7 +428,7 @@ const ProductAdded = () => {
                 </p>
 
                 <p className="text-gray-600 mb-5">
-                  {addedProduct.description}
+                  Discription : {addedProduct.description}
                 </p>
 
                 <div className="flex gap-4">

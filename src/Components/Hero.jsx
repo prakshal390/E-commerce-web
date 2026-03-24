@@ -1,6 +1,6 @@
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import videoBg from "../assets/abstract.mp4";
 import { products } from "../assets/asset/assets";
 import Card from "../Pages/Card";
@@ -8,6 +8,17 @@ import Card from "../Pages/Card";
 function Hero() {
 
   const [productData] = useState(products);
+  const [trending,setTrending] = useState(products);
+
+  const Trend = () =>{
+    let c = trending.filter((obj) => obj.bestseller == true);
+    console.log(c)
+    setTrending(c)
+  }
+  useEffect(()=>{
+    Trend();
+  },[]);
+
 
   return (
     <section className="relative w-full overflow-hidden">
@@ -54,7 +65,7 @@ function Hero() {
 
         <div className="px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
-          {productData.slice(0,10).map((obj,key) => (
+          {productData.map((obj,key) => (
             <Card
               id={obj.id}
               name={obj.name}
@@ -82,7 +93,7 @@ function Hero() {
 
         <div className="px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
-          {productData.slice(20,25).map((obj) => (
+          {trending.slice(0,5).map((obj) => (
             <Card
               id={obj.id}
               name={obj.name}

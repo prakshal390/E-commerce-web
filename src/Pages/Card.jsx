@@ -6,7 +6,7 @@ const Card = ({id,name, image, description, category,price,subCategory}) => {
     <Link to={`/products/${id}`} className='bg-white text-black p-4 rounded'>
         
         
-        <img src={image} alt="Not Found" />
+        <img className="w-56 hover:scale-105 transition-all" src={image} alt="Not Found" />
         <p>{description}</p>
         <p><b>Title:- </b>{name}</p>
         <p> <b> category :-</b> {category}</p>
