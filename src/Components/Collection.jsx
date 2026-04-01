@@ -102,7 +102,7 @@ const Collection = () => {
               <Card
                 key={key}
                 id={obj.id}
-                title={obj.name}
+                name={obj.name}
                 image={obj.image[0]}
                 description={obj.description}
                 category={obj.category}

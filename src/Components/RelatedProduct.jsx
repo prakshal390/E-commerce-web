@@ -3,18 +3,17 @@ import { products } from '../assets/asset/assets'
 import Card from "../Pages/Card";
 
 const RelatedProduct = ({category,subcategory}) => {
-    const [product,setproduct] = useState(products)
     const [related,setRelated] = useState([])
-    useEffect(()=>{
-        if(product.length>0){                       
-            let pcopy = product
+
+    useEffect(()=>{                      
+            let pcopy = products.slice()
             console.log("before :- ",pcopy)           // Shows all 52 product
             pcopy = pcopy.filter((i)=> category == i.category)
             console.log("after catogory :- ",pcopy)   // filter the product by category
             pcopy = pcopy.filter((i)=> subcategory == i.subCategory)
             console.log("after subcatogory :- ",pcopy) // filter the product by subcategory
             setRelated(pcopy)
-        }
+        
     },[])
   return (
     <div>
@@ -27,7 +26,7 @@ const RelatedProduct = ({category,subcategory}) => {
               <Card
                 key={key}
                 id={obj.id}
-                title={obj.name}
+                name={obj.name}
                 image={obj.image[0]}
                 description={obj.description}
                 category={obj.category}
